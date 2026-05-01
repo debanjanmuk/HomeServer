@@ -4,7 +4,7 @@ basic_bp = Blueprint('basic', __name__)
 
 @basic_bp.route("/")
 def index():
-    return "<html><body><h1>Hello, world!</h1></body></html>"
+    return "<html><body><h1>Hello, new world!</h1></body></html>"
 
 @basic_bp.route("/home")
 def home():
