@@ -1,12 +1,24 @@
 pipeline {
     agent any
 
+    environment {
+        VENV_DIR = '.venv'
+    }
+
     stages {
         stage('Build') {
             steps {
                 echo '=========================================='
                 echo 'Building the HomeServer project...'
                 echo '=========================================='
+                sh '''
+                    python3 --version
+                    python3 -m venv "$VENV_DIR"
+                    . "$VENV_DIR/bin/activate"
+                    python -m pip install --upgrade pip
+                    pip install -r requirements.txt
+                    echo "Build completed successfully."
+                '''
             }
         }
 
@@ -14,7 +26,6 @@ pipeline {
             steps {
                 echo '=========================================='
                 echo 'Running tests...'
-                echo '=========================================='
             }
         }
 
